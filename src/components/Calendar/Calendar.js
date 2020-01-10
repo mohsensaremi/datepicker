@@ -12,7 +12,6 @@ const Calendar = (props) => {
         monthData,
         DayComponent,
         onMouseEnterDay,
-        onMouseOutDay,
         hoverDate,
     } = props;
 
@@ -34,7 +33,6 @@ const Calendar = (props) => {
                                 onChange={onChange}
                                 DayComponent={DayComponent}
                                 onMouseEnterDay={onMouseEnterDay}
-                                onMouseOutDay={onMouseOutDay}
                                 hoverDate={hoverDate}
                             />
                         </div>

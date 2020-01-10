@@ -9,7 +9,6 @@ const Month = (props) => {
         dayIsDisabled,
         DayComponent,
         onMouseEnterDay,
-        onMouseOutDay,
         hoverDate,
     } = props;
 
@@ -29,7 +28,6 @@ const Month = (props) => {
                                     value={value}
                                     onChange={onChange}
                                     onMouseEnter={onMouseEnterDay}
-                                    onMouseOut={onMouseOutDay}
                                     hoverDate={hoverDate}
                                 />
                             );

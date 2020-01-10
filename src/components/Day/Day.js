@@ -12,7 +12,6 @@ const Day = (props) => {
         isHover,
         onClick,
         onMouseEnter,
-        onMouseOut,
         text,
     } = props;
 
@@ -27,7 +26,6 @@ const Day = (props) => {
             disabled={disabled}
             onClick={() => onClick(date)}
             onMouseEnter={() => onMouseEnter ? onMouseEnter(date) : null}
-            onMouseOut={() => onMouseOut ? onMouseOut(date) : null}
         >
             {text}
         </button>
