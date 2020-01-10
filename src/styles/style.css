@@ -1,0 +1,48 @@
+.button {
+    border: none;
+    outline: 0;
+}
+
+.day-root {
+    display: inline-flex;
+    width: 14.285%;
+    border: 1px solid #eee;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.day-root-today {
+    border-color: #61dafb;
+}
+
+.day-root-active {
+    border-color: #61dafb;
+    background-color: #61dafb;
+}
+
+.day-root-hover {
+    background-color: rgba(97, 218, 251, 0.5);
+}
+
+.day-root-past {
+    background-color: #f9f9f9;
+}
+
+.month-root {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grid-container {
+    display: flex;
+}
+
+.grid-space-between {
+    justify-content: space-between;
+}
+
+.calendar-month {
+    padding: 10px;
+}
