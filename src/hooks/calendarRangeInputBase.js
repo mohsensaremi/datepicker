@@ -1,6 +1,6 @@
 import {useDatePickerContext} from "./index";
 
-export const useCalendarRangeBase = (props) => {
+export const useCalendarRangeInputBase = (props) => {
 
     const {
         value,
