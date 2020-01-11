@@ -30,14 +30,20 @@ export const useDayRange = (props) => {
     };
 
     const isActive = (
+        date &&
+        adapter.isValid(date) &&
         value[0] &&
         adapter.isValid(value[0]) &&
-        adapter.format(date, 'fullDate') === adapter.format(value[0], 'fullDate')
+        adapter.isEqual(date, value[0])
     ) || (
+        date &&
+        adapter.isValid(date) &&
         value[1] &&
         adapter.isValid(value[1]) &&
-        adapter.format(date, 'fullDate') === adapter.format(value[1], 'fullDate')
+        adapter.isEqual(date, value[1])
     ) || (
+        date &&
+        adapter.isValid(date) &&
         value[0] &&
         adapter.isValid(value[0]) &&
         value[1] &&
@@ -48,6 +54,8 @@ export const useDayRange = (props) => {
     );
 
     const isHover = (
+        date &&
+        adapter.isValid(date) &&
         hoverDate &&
         adapter.isValid(hoverDate) &&
         value[0] &&

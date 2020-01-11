@@ -10,7 +10,7 @@ export const useCalendar = (props) => {
     } = props;
 
     const {adapter} = useDatePickerContext();
-    const [date, setDate] = useState(adapter.date(value || initialDate));
+    const [date, setDate] = useState(adapter.date((Array.isArray(value) ? value[0] : value) || initialDate));
 
     const onClickNextMonth = () => {
         setDate(adapter.getNextMonth(date));

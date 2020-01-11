@@ -10,7 +10,7 @@ export const useDay = (props) => {
 
     const {adapter} = useDatePickerContext();
     const today = adapter.date();
-    const isToday = adapter.format(date, 'fullDate') === adapter.format(today, 'fullDate');
+    const isToday = adapter.isEqual(date, today);
     const isActive = adapter.isValid(value) && adapter.isEqual(date, value);
     const isPast = adapter.isBefore(date, adapter.addDays(today, -1));
     const onClick = () => onChange(date);
