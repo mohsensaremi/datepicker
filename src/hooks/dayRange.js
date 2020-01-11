@@ -10,6 +10,7 @@ export const useDayRange = (props) => {
         onChange,
         hoverDate,
         onMouseEnter,
+        isRangeValid,
     } = props;
 
     const {adapter} = useDatePickerContext();
@@ -19,7 +20,8 @@ export const useDayRange = (props) => {
         if (value.length === 0 || value.length === 2) {
             onChange([date]);
         } else {
-            if (adapter.isAfter(date, value[0])) {
+            const isRangeValidResult = !(typeof isRangeValid === 'function' && !isRangeValid(value[0], date));
+            if (isRangeValidResult && adapter.isAfter(date, value[0])) {
                 onChange([
                     value[0],
                     date,

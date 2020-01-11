@@ -4,7 +4,7 @@ import {useState} from 'react';
 export const useCalendarRange = (props) => {
 
     const {
-        value
+        value,
     } = props;
 
     const calendarHooks = useCalendar(props);
