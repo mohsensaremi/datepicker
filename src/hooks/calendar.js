@@ -7,10 +7,20 @@ export const useCalendar = (props) => {
         initialDate,
         value,
         months,
+        maxDate,
+        disablePast,
     } = props;
 
     const {adapter} = useDatePickerContext();
     const [date, setDate] = useState(adapter.date((Array.isArray(value) ? value[0] : value) || initialDate));
+    let showNextMonth = true;
+    let showPrevMonth = true;
+    if (maxDate) {
+        showNextMonth = adapter.isBefore(date, adapter.date(maxDate));
+    }
+    if (disablePast) {
+        showPrevMonth = adapter.isAfter(date, adapter.startOfMonth(adapter.getNextMonth(adapter.date())));
+    }
 
     const onClickNextMonth = () => {
         setDate(adapter.getNextMonth(date));
@@ -32,9 +42,11 @@ export const useCalendar = (props) => {
     }, [months, date, adapter]);
 
     return {
-        onClickNextMonth,
+        onClickNextMonth: onClickNextMonth,
         onClickPrevMonth,
         date,
         monthData,
+        showNextMonth,
+        showPrevMonth,
     };
 };
