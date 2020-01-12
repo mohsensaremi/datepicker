@@ -15,7 +15,7 @@ export const useDay = (props) => {
     const isPast = adapter.isBefore(date, adapter.addDays(today, -1));
     const onClick = () => onChange(date);
     const text = adapter.format(date, 'dayOfMonth');
-    
+
     return {
         isToday,
         isActive,
