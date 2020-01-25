@@ -11,12 +11,16 @@ export const useDayRange = (props) => {
         hoverDate,
         onMouseEnter,
         isRangeValid,
+        readOnly,
     } = props;
 
     const {adapter} = useDatePickerContext();
     const dayHooks = useDay(props);
 
     const onClick = (date) => {
+        if (readOnly) {
+            return;
+        }
         if (value.length === 0 || value.length === 2) {
             onChange([date]);
         } else {

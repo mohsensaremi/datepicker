@@ -6,6 +6,7 @@ export const useDay = (props) => {
         date,
         value,
         onChange,
+        readOnly,
     } = props;
 
     const {adapter} = useDatePickerContext();
@@ -13,7 +14,7 @@ export const useDay = (props) => {
     const isToday = adapter.isEqual(adapter.startOfDay(date), adapter.startOfDay(today));
     const isActive = adapter.isValid(value) && adapter.isEqual(date, value);
     const isPast = adapter.isBefore(date, adapter.addDays(today, -1));
-    const onClick = () => onChange(date);
+    const onClick = () => readOnly ? null : onChange(date);
     const text = adapter.format(date, 'dayOfMonth');
 
     return {
