@@ -18,6 +18,8 @@ export const useCalendarRange = (props) => {
         }
     }, [value, onChange, localValue, localOnChange]);
 
+    const onReset = () => localOnChange(value);
+
     const onMouseEnterDay = (date) => {
         if (localValue.length === 1) {
             setHoverDate(date);
@@ -33,5 +35,6 @@ export const useCalendarRange = (props) => {
         localOnChange,
         value: localValue,
         onChange: localOnChange,
+        onReset,
     };
 };

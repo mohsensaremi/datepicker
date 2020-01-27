@@ -12,6 +12,7 @@ export const useDayRange = (props) => {
         onMouseEnter,
         isRangeValid,
         readOnly,
+        onReset,
     } = props;
 
     const {adapter} = useDatePickerContext();
@@ -31,7 +32,7 @@ export const useDayRange = (props) => {
                     date,
                 ]);
             } else {
-                onChange([]);
+                typeof onReset === "function" ? onReset() : onChange([]);
             }
             onMouseEnter(null);
         }
