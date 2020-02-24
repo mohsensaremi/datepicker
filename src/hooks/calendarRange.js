@@ -6,11 +6,16 @@ export const useCalendarRange = (props) => {
     const {
         value,
         onChange,
+        localValue: localValueProps,
+        localOnChange: localOnChangeProps,
     } = props;
 
     const calendarHooks = useCalendar(props);
-    const [localValue, localOnChange] = useState(value);
+    const [localLocalValue, localLocalOnChange] = useState(value);
     const [hoverDate, setHoverDate] = useState(null);
+
+    const localValue = localValueProps || localLocalValue,
+        localOnChange = localOnChangeProps || localLocalOnChange;
 
     useEffect(() => {
         if (localValue.length === 2) {
