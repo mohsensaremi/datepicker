@@ -7,9 +7,11 @@ export const useToolbar = (props) => {
     } = props;
 
     const {adapter} = useDatePickerContext();
-    const monthName = `${adapter.format(date, "month")} ${adapter.format(date, "year")}`;
+    const monthName = adapter.format(date, "month");
+    const yearName = adapter.format(date, "year");
 
     return {
         monthName,
+        yearName,
     };
 };

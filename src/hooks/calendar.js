@@ -9,6 +9,8 @@ export const useCalendar = (props) => {
         months,
         maxDate,
         disablePast,
+        disableFuture,
+        selectableYear,
     } = props;
 
     const {adapter} = useDatePickerContext();
@@ -28,6 +30,10 @@ export const useCalendar = (props) => {
     const onClickPrevMonth = () => {
         setDate(adapter.getPreviousMonth(date));
     };
+    const onChangeYear = (event) => {
+        const value = event.target.value;
+        setDate(adapter.setYear(date, Number(value)));
+    };
 
     const monthData = useMemo(() => {
         const data = [{
@@ -41,6 +47,25 @@ export const useCalendar = (props) => {
         return data;
     }, [months, date, adapter]);
 
+    const selectableYearArray = useMemo(() => {
+        const years = [];
+        if (selectableYear) {
+            if (disablePast !== true) {
+                for (let i = 0; i < 100; i++) {
+                    const yearNumber = adapter.getYear(date);
+                    years.push(yearNumber - i)
+                }
+            }
+            if (disableFuture !== true) {
+                for (let i = (disablePast !== true ? 1 : 0); i < 100; i++) {
+                    const yearNumber = adapter.getYear(date);
+                    years.unshift(yearNumber + i);
+                }
+            }
+        }
+        return years;
+    }, []);
+
     return {
         onClickNextMonth: onClickNextMonth,
         onClickPrevMonth,
@@ -48,5 +73,7 @@ export const useCalendar = (props) => {
         monthData,
         showNextMonth,
         showPrevMonth,
+        onChangeYear,
+        selectableYearArray,
     };
 };
