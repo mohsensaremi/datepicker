@@ -14,7 +14,7 @@ export const useCalendarRangeInputBase = (props) => {
 
 
     const popupState = usePopupState({
-        variant: 'popover',
+        variant: 'popper',
         popupId: 'datepicker-calendar-range-input',
     });
     const popoverProps = bindPopover(popupState);
