@@ -10,10 +10,10 @@ export const useDay = (props) => {
     } = props;
 
     const {adapter} = useDatePickerContext();
-    const today = adapter.date();
+    const today = adapter.startOfDay(adapter.date());
     const isToday = adapter.isEqual(adapter.startOfDay(date), adapter.startOfDay(today));
     const isActive = adapter.isValid(value) && adapter.isEqual(date, value);
-    const isPast = adapter.isBefore(date, adapter.addDays(today, -1));
+    const isPast = adapter.isBefore(date, today);
     const onClick = () => readOnly ? null : onChange(date);
     const text = adapter.format(date, 'dayOfMonth');
 
