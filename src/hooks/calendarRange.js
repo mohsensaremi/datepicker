@@ -23,6 +23,12 @@ export const useCalendarRange = (props) => {
         }
     }, [onChange, localValue]);
 
+    useEffect(() => {
+        if (value.length === 2) {
+            localOnChange(value);
+        }
+    }, [localOnChange, value]);
+
     const onReset = () => localOnChange(value);
 
     const onMouseEnterDay = (date) => {
