@@ -21,7 +21,7 @@ export const useCalendarRange = (props) => {
         if (localValue.length === 2) {
             onChange(localValue);
         }
-    }, [value, onChange, localValue, localOnChange]);
+    }, [onChange, localValue]);
 
     const onReset = () => localOnChange(value);
 
