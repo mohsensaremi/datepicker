@@ -24,7 +24,7 @@ export const useCalendarRange = (props) => {
     }, [onChange, localValue]);
 
     useEffect(() => {
-        if (value.length === 2) {
+        if (value.length === 2 || value.length === 0) {
             localOnChange(value);
         }
     }, [localOnChange, value]);

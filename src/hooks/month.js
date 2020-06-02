@@ -7,7 +7,7 @@ export const useMonth = (props) => {
     } = props;
 
     const {adapter} = useDatePickerContext();
-    const weekArray = adapter.getWeekArray(date).map(weeks => weeks.map(day => adapter.setHours(day, 5)));
+    const weekArray = adapter.getWeekArray(date);
     const weekDays = adapter.getWeekdays();
     const dayIsDisabled = day => adapter.getMonth(day) !== adapter.getMonth(date);
 
