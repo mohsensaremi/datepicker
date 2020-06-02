@@ -10,8 +10,8 @@ export const useDay = (props) => {
     } = props;
 
     const {adapter} = useDatePickerContext();
-    const today = adapter.startOfDay(adapter.date());
-    const isToday = adapter.isEqual(adapter.startOfDay(date), adapter.startOfDay(today));
+    const today = adapter.setHours(adapter.startOfDay(adapter.date()), 5);
+    const isToday = adapter.isEqual(date, today);
     const isActive = adapter.isValid(value) && adapter.isEqual(date, value);
     const isPast = adapter.isBefore(date, today);
     const onClick = () => readOnly ? null : onChange(date);
