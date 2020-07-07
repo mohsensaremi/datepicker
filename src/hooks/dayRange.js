@@ -13,6 +13,7 @@ export const useDayRange = (props) => {
         isRangeValid,
         readOnly,
         onReset,
+        mode,
     } = props;
 
     const {adapter} = useDatePickerContext();
@@ -22,19 +23,27 @@ export const useDayRange = (props) => {
         if (readOnly) {
             return;
         }
-        if (value.length === 0 || value.length === 2) {
-            onChange([date]);
-        } else {
-            const isRangeValidResult = !(typeof isRangeValid === 'function' && !isRangeValid(value[0], date));
-            if (isRangeValidResult && adapter.isAfter(date, value[0])) {
-                onChange([
-                    value[0],
-                    date,
-                ]);
-            } else {
-                typeof onReset === "function" ? onReset() : onChange([]);
-            }
-            onMouseEnter(null);
+
+        switch (mode) {
+            case "single":
+                onChange([date]);
+                break;
+            case "range":
+                if (value.length === 0 || value.length === 2) {
+                    onChange([date]);
+                } else {
+                    const isRangeValidResult = !(typeof isRangeValid === 'function' && !isRangeValid(value[0], date));
+                    if (isRangeValidResult && adapter.isAfter(date, value[0])) {
+                        onChange([
+                            value[0],
+                            date,
+                        ]);
+                    } else {
+                        typeof onReset === "function" ? onReset() : onChange([]);
+                    }
+                    onMouseEnter(null);
+                }
+                break;
         }
     };
 

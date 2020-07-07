@@ -10,6 +10,7 @@ export const useCalendarRangeInputBase = (props) => {
         readOnly,
         closeAfterChoose,
         triggerGetter,
+        mode,
     } = props;
 
 
@@ -23,16 +24,34 @@ export const useCalendarRangeInputBase = (props) => {
     const [localValue, localOnChange] = useState(value);
 
     useEffect(() => {
-        if (closeAfterChoose && value.length === 2) {
-            popoverProps.onClose();
+        switch (mode) {
+            case "single":
+                if (closeAfterChoose && value.length === 1) {
+                    popoverProps.onClose();
+                }
+                break;
+            case "range":
+                if (closeAfterChoose && value.length === 2) {
+                    popoverProps.onClose();
+                }
+                break;
         }
-    }, [closeAfterChoose, value]);
+    }, [closeAfterChoose, value,mode]);
 
     useEffect(() => {
-        if (value.length === 2) {
-            localOnChange(value);
+        switch (mode) {
+            case "single":
+                if (value.length === 1) {
+                    localOnChange(value);
+                }
+                break;
+            case "range":
+                if (value.length === 2) {
+                    localOnChange(value);
+                }
+                break;
         }
-    }, [value]);
+    }, [value,mode]);
 
     useEffect(() => {
         if (typeof triggerGetter === "function") {

@@ -8,6 +8,7 @@ export const useCalendarRange = (props) => {
         onChange,
         localValue: localValueProps,
         localOnChange: localOnChangeProps,
+        mode,
     } = props;
 
     const calendarHooks = useCalendar(props);
@@ -18,22 +19,42 @@ export const useCalendarRange = (props) => {
         localOnChange = localOnChangeProps || localLocalOnChange;
 
     useEffect(() => {
-        if (localValue.length === 2) {
-            onChange(localValue);
+        switch (mode) {
+            case "single":
+                if (localValue.length === 1) {
+                    onChange(localValue);
+                }
+                break;
+            case "range":
+                if (localValue.length === 2) {
+                    onChange(localValue);
+                }
+                break;
         }
-    }, [onChange, localValue]);
+    }, [onChange, localValue, mode]);
 
     useEffect(() => {
-        if (value.length === 2 || value.length === 0) {
-            localOnChange(value);
+        switch (mode) {
+            case "single":
+                if (value.length === 1) {
+                    localOnChange(value);
+                }
+                break;
+            case "range":
+                if (value.length === 2 || value.length === 0) {
+                    localOnChange(value);
+                }
+                break;
         }
-    }, [localOnChange, value]);
+    }, [localOnChange, value, mode]);
 
     const onReset = () => localOnChange(value);
 
     const onMouseEnterDay = (date) => {
-        if (localValue.length === 1) {
-            setHoverDate(date);
+        if(mode==="range"){
+            if (localValue.length === 1) {
+                setHoverDate(date);
+            }
         }
     };
 
