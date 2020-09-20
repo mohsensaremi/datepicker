@@ -13,14 +13,12 @@ export const useCalendarRangeInputBase = (props) => {
         mode,
     } = props;
 
-
-    const popupState = usePopupState({
-        variant: 'popper',
+    const popperState = usePopupState({
+        variant: 'popover',
         popupId: 'datepicker-calendar-range-input',
     });
-    const popoverProps = bindPopover(popupState);
-    const popoverTrigger = bindTrigger(popupState);
-
+    const popoverProps = bindPopover(popperState);
+    const popoverTrigger = bindTrigger(popperState);
     const [localValue, localOnChange] = useState(value);
 
     useEffect(() => {
@@ -36,7 +34,7 @@ export const useCalendarRangeInputBase = (props) => {
                 }
                 break;
         }
-    }, [closeAfterChoose, value,mode]);
+    }, [closeAfterChoose, value, mode]);
 
     useEffect(() => {
         switch (mode) {
@@ -51,7 +49,7 @@ export const useCalendarRangeInputBase = (props) => {
                 }
                 break;
         }
-    }, [value,mode]);
+    }, [value, mode]);
 
     useEffect(() => {
         if (typeof triggerGetter === "function") {
